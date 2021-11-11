@@ -30,7 +30,7 @@ public class ErrorController {
   final ErrorService errservice;
 
   @PostMapping("/err")
-  APIResponse<Error> getBCode(@RequestBody APIRequest<String> code) {
+  APIResponse<Error> getByCode(@RequestBody APIRequest<String> code) {
     return APIResponse.success(errservice.getMessageByCode(code.getBody()));
   }
 
