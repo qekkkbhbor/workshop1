@@ -2,13 +2,18 @@ package tw.com.fcb.mimosa.workshop.vaccine.ddd.application;
 
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.application.assembler.CommandAssembler;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.application.command.CancelVaccine;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.application.command.ChooseVaccine;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.application.command.MakeAppointment;
+import tw.com.fcb.mimosa.workshop.vaccine.ddd.application.command.ReplaceResidentProfile;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.domain.AppointmentRepository;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.domain.Choose;
+import tw.com.fcb.mimosa.workshop.vaccine.ddd.domain.event.AppointmentMade;
+import tw.com.fcb.mimosa.workshop.vaccine.ddd.domain.event.ResidentProfileReplaced;
 
 @Service
 @RequiredArgsConstructor
@@ -16,9 +21,16 @@ public class ApplicationService {
 
   final AppointmentRepository repository;
   final CommandAssembler assembler;
+  final ApplicationEventPublisher publisher;
 
   public long makeAppointment(MakeAppointment command) {
-    return repository.save(assembler.toDomain(command));
+    var id = repository.save(assembler.toDomain(command));
+    var event = new AppointmentMade();
+    event.setResidentId(id);
+    event.setNhiNo(command.getNhiNo());
+    event.setPhoneNo(command.getPhoneNo());
+    publisher.publishEvent(event);
+    return id;
   }
 
   // 這是 anemic model style, 這段可以收到 domain 物件內改成 rich model style

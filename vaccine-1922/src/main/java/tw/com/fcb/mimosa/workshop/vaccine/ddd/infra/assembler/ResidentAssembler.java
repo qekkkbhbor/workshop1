@@ -14,11 +14,13 @@ import tw.com.fcb.mimosa.workshop.vaccine.ddd.application.command.ReplaceResiden
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.domain.Appointment;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.infra.repository.ChooseEntity;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.infra.repository.ResidentEntity;
+import tw.com.fcb.mimosa.workshop.vaccine.ddd.infra.repository.ResidentInfoEntity;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.infra.repository.ResidentProfileEntity;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.rest.CancelVaccineRequest;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.rest.ChooseVaccineRequest;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.rest.MakeAppointmentRequest;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.rest.ReplaceResidentProfileRequest;
+import tw.com.fcb.mimosa.workshop.vaccine.sharedkernel.ResidentInfo;
 import tw.com.fcb.mimosa.workshop.vaccine.sharedkernel.ResidentProfile;
 import tw.com.fcb.mimosa.workshop.vaccine.sharedkernel.Vaccine;
 
@@ -52,6 +54,8 @@ public interface ResidentAssembler {
   ResidentProfileEntity toProfileEntity(ResidentEntity resident);
 
   ResidentProfile toProfile(ResidentProfileEntity profileEntity);
+
+  ResidentInfo toInfo(ResidentInfoEntity infoEntity);
 
   default List<Vaccine> fromChooseString(String choose) {
     return Arrays.stream(choose.split(","))

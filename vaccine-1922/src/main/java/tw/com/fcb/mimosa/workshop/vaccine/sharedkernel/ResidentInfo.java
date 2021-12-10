@@ -5,9 +5,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class ResidentProfile {
+public class ResidentInfo {
   String nhiNo;
   String phoneNo;
-  List<Vaccine> choose;
-
 }

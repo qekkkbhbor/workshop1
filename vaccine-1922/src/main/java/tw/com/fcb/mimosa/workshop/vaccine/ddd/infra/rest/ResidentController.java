@@ -14,12 +14,14 @@ import tw.com.fcb.mimosa.workshop.vaccine.ddd.application.command.ReplaceResiden
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.application.ApplicationService;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.application.command.MakeAppointment;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.application.query.QueryResidents;
+import tw.com.fcb.mimosa.workshop.vaccine.ddd.application.query.QueryResidentsInfo;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.infra.assembler.ResidentAssembler;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.rest.CancelVaccineRequest;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.rest.ChooseVaccineRequest;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.rest.MakeAppointmentRequest;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.rest.ReplaceResidentProfileRequest;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.rest.ResidentApi;
+import tw.com.fcb.mimosa.workshop.vaccine.sharedkernel.ResidentInfo;
 import tw.com.fcb.mimosa.workshop.vaccine.sharedkernel.ResidentProfile;
 
 @RestController
@@ -30,6 +32,7 @@ class ResidentController implements ResidentApi {
   final ResidentAssembler assembler;
   final UseCases useCases;
   final QueryResidents query;
+  final QueryResidentsInfo queryInfo;
 
   @Override
   public long makeAppointment(MakeAppointmentRequest request) {
@@ -63,5 +66,10 @@ class ResidentController implements ResidentApi {
   @Override
   public List<ResidentProfile> getResidents() {
     return query.getResidents();
+  }
+
+  @Override
+  public List<ResidentInfo> getResidentsInfo() {
+    return queryInfo.getResidentsInfo();
   }
 }

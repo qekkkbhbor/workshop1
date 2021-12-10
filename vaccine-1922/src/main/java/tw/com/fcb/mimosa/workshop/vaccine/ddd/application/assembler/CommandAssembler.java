@@ -3,6 +3,7 @@ package tw.com.fcb.mimosa.workshop.vaccine.ddd.application.assembler;
 import java.time.LocalDateTime;
 import org.mapstruct.Mapper;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.application.command.MakeAppointment;
+import tw.com.fcb.mimosa.workshop.vaccine.ddd.application.command.ReplaceResidentProfile;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.domain.Appointment;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.domain.Cancel;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.domain.Choose;

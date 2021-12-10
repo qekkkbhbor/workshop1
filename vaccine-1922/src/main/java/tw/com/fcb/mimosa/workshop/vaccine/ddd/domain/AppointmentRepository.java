@@ -1,6 +1,8 @@
 package tw.com.fcb.mimosa.workshop.vaccine.ddd.domain;
 
 import java.util.List;
+
+import tw.com.fcb.mimosa.workshop.vaccine.sharedkernel.ResidentInfo;
 import tw.com.fcb.mimosa.workshop.vaccine.sharedkernel.ResidentProfile;
 
 public interface AppointmentRepository {
@@ -10,4 +12,6 @@ public interface AppointmentRepository {
   Appointment findById(long id);
 
   List<ResidentProfile> findResidents();
+
+  List<ResidentInfo> findResidentsInfo();
 }

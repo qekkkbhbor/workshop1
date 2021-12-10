@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.domain.Appointment;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.domain.AppointmentRepository;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.infra.assembler.ResidentAssembler;
+import tw.com.fcb.mimosa.workshop.vaccine.sharedkernel.ResidentInfo;
 import tw.com.fcb.mimosa.workshop.vaccine.sharedkernel.ResidentProfile;
 
 @Repository
@@ -18,6 +19,7 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
   final ResidentAssembler assembler;
   final ApplicationEventPublisher publisher;
   final ResidentProfileRepository jpaResidentProfileRepository;
+  final ResidentInfoRepository jpaResidentInfoRepository;
 
   @Override
   public long save(Appointment domain) {
@@ -42,4 +44,11 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
         .collect(Collectors.toList());
   }
 
+  @Override
+  public List<ResidentInfo> findResidentsInfo() {
+    return jpaResidentInfoRepository.findAll()
+        .stream()
+        .map(assembler::toInfo)
+        .collect(Collectors.toList());
+  }
 }

@@ -1,20 +1,21 @@
 package tw.com.fcb.mimosa.workshop.vaccine.ddd.application.query;
 
 import java.util.List;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
 import tw.com.fcb.mimosa.workshop.vaccine.ddd.domain.AppointmentRepository;
 import tw.com.fcb.mimosa.workshop.vaccine.sharedkernel.ResidentInfo;
-import tw.com.fcb.mimosa.workshop.vaccine.sharedkernel.ResidentProfile;
 
 @Service
 @RequiredArgsConstructor
-public class QueryResidents {
+public class QueryResidentsInfo {
 
   final AppointmentRepository repository;
 
-  public List<ResidentProfile> getResidents() {
-    return repository.findResidents();
+  public List<ResidentInfo> getResidentsInfo() {
+    return repository.findResidentsInfo();
   }
 
 }
