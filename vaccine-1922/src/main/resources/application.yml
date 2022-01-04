@@ -13,6 +13,7 @@ logging:
     sql: DEBUG
     tw.com.fcb.mimosa: DEBUG
     com.zaxxer.hikari.HikariConfig: DEBUG
+    io.jaegertracing.internal.reporters.RemoteReporter: FATAL
     jdbc:
       resultsettable: INFO
       sqltiming: INFO

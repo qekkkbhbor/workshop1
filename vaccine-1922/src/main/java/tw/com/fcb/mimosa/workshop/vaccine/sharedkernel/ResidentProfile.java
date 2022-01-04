@@ -8,6 +8,6 @@ import lombok.Data;
 public class ResidentProfile {
   String nhiNo;
   String phoneNo;
-  List<Vaccine> choose;
+  List<Vaccine> chooses;
 
 }
